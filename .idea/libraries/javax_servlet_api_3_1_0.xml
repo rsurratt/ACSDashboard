@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="javax.servlet-api-3.1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/dependency/javax.servlet-api-3.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/jetty-http-9.2.10.v20150310.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/jetty-io-9.2.10.v20150310.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/jetty-security-9.2.10.v20150310.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/jetty-server-9.2.10.v20150310.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/jetty-servlet-9.2.10.v20150310.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/jetty-util-9.2.10.v20150310.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/postgresql-9.4-1201-jdbc4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/commons-codec-1.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/commons-lang-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/guava-18.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/httpclient-4.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/httpcore-4.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/jackson-annotations-2.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/jackson-core-2.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/jackson-databind-2.5.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/dependency/velocity-1.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

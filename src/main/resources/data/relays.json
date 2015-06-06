@@ -1,0 +1,181 @@
+{
+    "relays": [
+        {
+            "name": "Braintree",
+            "specialist": "Amanda",
+            "homePage": "http://relay.acsevents.org/site/TR?pg=entry&amp;fr_id=65353",
+            "dollarsRaisedGoal": 160000,
+            "participantsGoal": 500,
+            "teamsGoal": 57
+        },
+        {
+            "name": "Quincy",
+            "specialist": "Amanda",
+            "homePage": "http://relay.acsevents.org/site/TR?pg=entry&amp;fr_id=65368",
+            "dollarsRaisedGoal": 126000,
+            "participantsGoal": 376,
+            "teamsGoal": 35
+        },
+        {
+            "name": "Norwood",
+            "specialist": "Amanda",
+            "homePage": "http://relay.acsevents.org/site/TR?pg=entry&amp;fr_id=65366",
+            "dollarsRaisedGoal": 72000,
+            "participantsGoal": 400,
+            "teamsGoal": 39
+        },
+        {
+            "name": "Natick",
+            "specialist": "Britney",
+            "homePage": "http://relay.acsevents.org/site/TR?pg=entry&amp;fr_id=65284",
+            "dollarsRaisedGoal": 170000,
+            "participantsGoal": 850,
+            "teamsGoal": 85
+        },
+        {
+            "name": "Ashland",
+            "specialist": "Britney",
+            "homePage": "http://relay.acsevents.org/site/TR?pg=entry&amp;fr_id=65288",
+            "dollarsRaisedGoal": 170000,
+            "participantsGoal": 730,
+            "teamsGoal": 50
+        },
+        {
+            "name": "Millis/Medway/Medfield/Norfolk",
+            "specialist": "Mike",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65372",
+            "dollarsRaisedGoal": 48000,
+            "participantsGoal": 256,
+            "teamsGoal": 27
+        },
+        {
+            "name": "Milford",
+            "specialist": "Mike",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65384",
+            "dollarsRaisedGoal": 75500,
+            "participantsGoal": 362,
+            "teamsGoal": 40
+        },
+        {
+            "name": "Franklin",
+            "specialist": "Mike",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65359",
+            "dollarsRaisedGoal": 130500,
+            "participantsGoal": 690,
+            "teamsGoal": 50
+        },
+        {
+            "name": "Foxboro",
+            "specialist": "Mike",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65378",
+            "dollarsRaisedGoal": 75500,
+            "participantsGoal": 362,
+            "teamsGoal": 40
+        },
+        {
+            "name": "Tantasqua",
+            "specialist": "Lauren",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=64849",
+            "dollarsRaisedGoal": 30000,
+            "participantsGoal": 380,
+            "teamsGoal": 22
+        },
+        {
+            "name": "Worcester",
+            "specialist": "Lauren",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65412",
+            "dollarsRaisedGoal": 148000,
+            "participantsGoal": 550,
+            "teamsGoal": 60
+        },
+        {
+            "name": "Southbridge",
+            "specialist": "Lauren",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65409",
+            "dollarsRaisedGoal": 193000,
+            "participantsGoal": 900,
+            "teamsGoal": 60
+        },
+        {
+            "name": "Needham",
+            "specialist": "Jennifer",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65387",
+            "dollarsRaisedGoal": 132000,
+            "participantsGoal": 575,
+            "teamsGoal": 55
+        },
+        {
+            "name": "Winchester",
+            "specialist": "Jennifer",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65338",
+            "dollarsRaisedGoal": 71000,
+            "participantsGoal": 275,
+            "teamsGoal": 35
+        },
+        {
+            "name": "Watertown",
+            "specialist": "Jennifer",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65404",
+            "dollarsRaisedGoal": 64000,
+            "participantsGoal": 335,
+            "teamsGoal": 37
+        },
+        {
+            "name": "East Boston",
+            "specialist": "Jennifer",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65407",
+            "dollarsRaisedGoal": 74000,
+            "participantsGoal": 500,
+            "teamsGoal": 34
+        },
+        {
+            "name": "Westborough",
+            "specialist": "Abby",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=64824",
+            "dollarsRaisedGoal": 28500,
+            "participantsGoal": 165,
+            "teamsGoal": 14
+        },
+        {
+            "name": "Marlboro/Hudson",
+            "specialist": "Abby",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65296",
+            "dollarsRaisedGoal": 87000,
+            "participantsGoal": 480,
+            "teamsGoal": 60
+        },
+        {
+            "name": "Bolton",
+            "specialist": "Abby",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65418",
+            "dollarsRaisedGoal": 60500,
+            "participantsGoal": 410,
+            "teamsGoal": 25
+        },
+        {
+            "name": "Shrewsbury",
+            "specialist": "Abby",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65415",
+            "dollarsRaisedGoal": 47000,
+            "participantsGoal": 280,
+            "teamsGoal": 25
+        },
+        {
+            "name": "Chapel Hill-Chauncy Hall School",
+            "specialist": "Jennifer",
+            "homePage": "http://main.acsevents.org/site/TR?pg=entry&amp;fr_id=65162",
+            "dollarsRaisedGoal": 15000,
+            "participantsGoal": 150,
+            "teamsGoal": 15
+        },
+        {
+            "name": "Central South County",
+            "specialist": "Lauren",
+            "homePage": "http://main.acsevents.org/site/TR/RelayForLife/RFLCY16NE?pg=entry&amp;fr_id=69677",
+            "dollarsRaisedGoal": 90000,
+            "participantsGoal": 300,
+            "teamsGoal": 30
+        }
+    ]
+}
+
