@@ -16,13 +16,14 @@ public class VelocityRenderer implements Renderer
 {
     private VelocityEngine  m_ve;
     private VelocityContext m_vc;
-    private String          m_templateName;
 
-    public VelocityRenderer(String templateName)
+    public VelocityRenderer(String templateName, String pageTitle)
     {
         m_ve = new VelocityEngine(getVelocityProperties());
         m_vc = new VelocityContext();
-        m_templateName = templateName;
+
+        m_vc.put("bodyTemplate", "templates/" + templateName + ".vm");
+        m_vc.put("pageTitle", pageTitle);
     }
 
     private Properties getVelocityProperties()
@@ -40,7 +41,7 @@ public class VelocityRenderer implements Renderer
 
     public void render(HttpServletResponse response) throws IOException
     {
-        Template template = m_ve.getTemplate("templates/" + m_templateName + ".vm");
+        Template template = m_ve.getTemplate("templates/layout.vm");
         template.merge(m_vc, response.getWriter());
     }
 

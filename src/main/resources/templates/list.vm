@@ -1,7 +1,5 @@
 ## @vtlvariable name="relays" type="com.surrattfamily.acsdash.model.Relays"
 
-#parse("templates/_top.vm")
-
 #foreach($relay in $relays)
   $relay.name
 #end

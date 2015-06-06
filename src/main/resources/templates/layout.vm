@@ -1,0 +1,22 @@
+## @vtlvariable name="pageTitle" type="java.lang.String"
+## @vtlvariable name="bodyTemplate" type="java.lang.String"
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ACS Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="scaffold.css"/>
+  <link rel="stylesheet" type="text/css" href="dashboard.css"/>
+</head>
+<body>
+  <table class="heading">
+    <tr>
+      <td><img border="0" alt="Relay for Life" src="http://main.acsevents.org/images/RFLFY10images/Logo.gif"/></td>
+      <td><h1>$pageTitle</h1></td>
+    </tr>
+  </table>
+
+  #parse($bodyTemplate)
+
+</body>
+</html>

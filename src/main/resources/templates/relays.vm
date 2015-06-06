@@ -1,0 +1,28 @@
+## @vtlvariable name="relays" type="java.util.List<com.surrattfamily.acsdash.model.Relay>"
+
+<table class="acsTable">
+  <thead>
+    <tr>
+      <th class="text">Relay</th>
+      <th class="text">Manager</th>
+      <th class="number">Goal: Dollars Raised</th>
+      <th class="number">Goal: Teams</th>
+      <th class="number">Goal: Participants</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  #foreach($relay in $relays)
+    <tr>
+      <td class="text">$relay.name</td>
+      <td class="text">$relay.staffPartner</td>
+      <td class="number">$relay.goal.dollarsRaisedGoal</td>
+      <td class="number">$relay.goal.teamsGoal</td>
+      <td class="number">$relay.goal.participantsGoal</td>
+    </tr>
+  #end
+  </tbody>
+</table>
+
+
+

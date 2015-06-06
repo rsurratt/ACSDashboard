@@ -1,0 +1,28 @@
+## @vtlvariable name="staffPartners" type="java.util.List<java.lang.String>"
+## @vtlvariable name="goals" type="java.util.Map<java.lang.String,com.surrattfamily.acsdash.model.Goal>"
+
+<table class="acsTable">
+  <thead>
+    <tr>
+      <th class="text">Manager</th>
+      <th class="number">Goal: Dollars Raised</th>
+      <th class="number">Goal: Teams</th>
+      <th class="number">Goal: Participants</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  #foreach($staffPartner in $staffPartners)
+    #set($goal=$goals[$staffPartner])
+    <tr>
+      <td class="text">$staffPartner</td>
+      <td class="number">$goal.dollarsRaisedGoal</td>
+      <td class="number">$goal.teamsGoal</td>
+      <td class="number">$goal.participantsGoal</td>
+    </tr>
+  #end
+  </tbody>
+</table>
+
+
+

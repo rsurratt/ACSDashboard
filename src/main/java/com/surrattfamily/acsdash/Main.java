@@ -6,6 +6,8 @@ import com.google.common.io.Resources;
 import com.surrattfamily.acsdash.action.ActionContext;
 import com.surrattfamily.acsdash.action.IndexAction;
 import com.surrattfamily.acsdash.action.ListAction;
+import com.surrattfamily.acsdash.action.RelaysAction;
+import com.surrattfamily.acsdash.action.StaffPartnersAction;
 import com.surrattfamily.acsdash.action.StaticFileAction;
 import com.surrattfamily.acsdash.renderer.Renderer;
 import com.surrattfamily.acsdash.model.Relays;
@@ -35,13 +37,15 @@ public class Main extends HttpServlet
     public Main() throws IOException
     {
         m_actions = initActions();
-        m_relays = initRelays();
+        m_relays = Relays.loadFromCSV("data/relays.csv");
     }
 
     private ImmutableMap<Pattern, Function<ActionContext, Renderer>> initActions()
     {
         ImmutableMap.Builder<Pattern, Function<ActionContext, Renderer>> builder = ImmutableMap.builder();
 
+        builder.put(Pattern.compile("/managers"), new StaffPartnersAction());
+        builder.put(Pattern.compile("/relays(.*)"), new RelaysAction());
         builder.put(Pattern.compile("/list.*"), new ListAction());
         builder.put(Pattern.compile("/"), new IndexAction());
         builder.put(Pattern.compile("/.*"), new StaticFileAction());
@@ -49,11 +53,6 @@ public class Main extends HttpServlet
         return builder.build();
     }
 
-    private Relays initRelays() throws IOException
-    {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(Resources.getResource("data/relays.json"), Relays.class);
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException

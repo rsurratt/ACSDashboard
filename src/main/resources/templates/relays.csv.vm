@@ -1,0 +1,8 @@
+## @vtlvariable name="relays" type="java.util.List<com.surrattfamily.acsdash.model.Relay>"
+
+<pre>
+Relay,Manager,Money,Teams,Participants,HomePage
+#foreach($relay in $relays)
+$relay.name,$relay.staffPartner,$relay.goal.dollarsRaisedGoal,$relay.goal.teamsGoal,$relay.goal.participantsGoal,$relay.homePage
+#end
+</pre>

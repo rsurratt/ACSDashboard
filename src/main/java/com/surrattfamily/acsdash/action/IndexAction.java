@@ -14,6 +14,6 @@ public class IndexAction implements Function<ActionContext,Renderer>
     @Override
     public Renderer apply(ActionContext actionContext)
     {
-        return new VelocityRenderer("index");
+        return new VelocityRenderer("index", "Index");
     }
 }

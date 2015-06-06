@@ -14,7 +14,7 @@ public class ListAction implements Function<ActionContext, Renderer>
     @Override
     public Renderer apply(ActionContext actionContext)
     {
-        VelocityRenderer renderer = new VelocityRenderer("list");
+        VelocityRenderer renderer = new VelocityRenderer("list", "List");
         renderer.put("relays", actionContext.getRelays()) ;
         return renderer;
     }
