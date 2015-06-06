@@ -3,6 +3,7 @@ package com.surrattfamily.acsdash.action;
 import com.surrattfamily.acsdash.PageFetcher;
 import com.surrattfamily.acsdash.model.DashboardItem;
 import com.surrattfamily.acsdash.model.Relay;
+import com.surrattfamily.acsdash.model.Stats;
 import com.surrattfamily.acsdash.renderer.Renderer;
 import com.surrattfamily.acsdash.renderer.VelocityRenderer;
 
@@ -19,33 +20,42 @@ import static java.util.stream.Collectors.toList;
  */
 public class DashboardAction implements Function<ActionContext, Renderer>
 {
-    private final Predicate<Relay> m_predicate;
-
-    public DashboardAction()
-    {
-        m_predicate = relay -> true;
-    }
-
-    public DashboardAction(Predicate<Relay> predicate)
-    {
-        m_predicate = predicate;
-    }
-
     @Override
     public Renderer apply(ActionContext actionContext)
     {
+        Predicate<Relay> predicate = r -> true;
+        String pageTitle = "Overview Dashboard";
+        boolean isOverview = true;
+
+        if (!actionContext.getParams().isEmpty())
+        {
+            String staffPartner = actionContext.getParams().get(0);
+            pageTitle = staffPartner + "'s Dashboard";
+            predicate = r -> r.getStaffPartner().equals(staffPartner);
+            isOverview = false;
+        }
+
         String template = "dashboard";
-        VelocityRenderer renderer = new VelocityRenderer(template, "All relays");
+        VelocityRenderer renderer = new VelocityRenderer(template, pageTitle);
 
         List<DashboardItem> items =
             actionContext.getRelays().parallelStream()
-                         .filter(m_predicate)
-//                         .limit(4)
+                         .filter(predicate)
                          .map(PageFetcher::parsePage)
                          .sorted(comparing(DashboardItem::getDate))
                          .collect(toList());
 
+        Stats totalGoal = items.stream()
+                               .map(item -> item.getRelay().getGoal())
+                               .reduce(Stats.ZERO, Stats::sum);
+
+        Stats totalActual = items.stream()
+                                 .map(DashboardItem::getActual)
+                                 .reduce(Stats.ZERO, Stats::sum);
+
         renderer.put("items", items);
+        renderer.put("total", new DashboardItem(new Relay(totalGoal), totalActual, null));
+        renderer.put("isOverview", isOverview);
         return renderer;
     }
 }

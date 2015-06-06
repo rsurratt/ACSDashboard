@@ -1,4 +1,6 @@
 ## @vtlvariable name="items" type="java.util.List<com.surrattfamily.acsdash.model.DashboardItem>"
+## @vtlvariable name="total" type="com.surrattfamily.acsdash.model.DashboardItem"
+## @vtlvariable name="isOverview" type="boolean"
 
 #parse("templates/macros.vm")
 
@@ -6,7 +8,9 @@
   <thead>
     <tr>
       <th class="text">Date</th>
+#if($isOverview)
       <th class="text">Manager</th>
+#end
       <th class="text">Relay</th>
       <th class="number">Dollars Raised</th>
       <th class="number">Teams</th>
@@ -18,13 +22,27 @@
   #foreach($item in $items)
     <tr>
       <td class="text">$item.date</td>
+#if($isOverview)
+      <td class="text"><a href="/dashboard/$item.relay.staffPartner">$item.relay.staffPartner</a></td>
+#end
       <td class="text"><a href="$item.relay.homePage">$item.relay.name</a></td>
-      <td class="text">$item.relay.staffPartner</td>
-      <td class="number">#bargraph( $item.actual.dollarsRaised $item.dollarsRaisedPercentage )</td>
+      <td class="number">#bargraph( $item.actual.dollarsRaisedFormatted $item.dollarsRaisedPercentage )</td>
       <td class="number">#bargraph( $item.actual.teams $item.teamsPercentage )</td>
       <td class="number">#bargraph( $item.actual.participants $item.participantsPercentage )</td>
     </tr>
   #end
   </tbody>
+  <tfoot>
+    <tr>
+      <th class="text"></th>
+#if($isOverview)
+      <th class="text"></th>
+#end
+      <th class="text"></th>
+      <th class="number">#bargraph( $total.actual.dollarsRaisedFormatted $total.dollarsRaisedPercentage )</th>
+      <th class="number">#bargraph( $total.actual.teams $total.teamsPercentage )</th>
+      <th class="number">#bargraph( $total.actual.participants $total.participantsPercentage )</th>
+    </tr>
+  </tfoot>
 </table>
 

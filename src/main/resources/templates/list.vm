@@ -1,7 +1,0 @@
-## @vtlvariable name="relays" type="com.surrattfamily.acsdash.model.Relays"
-
-#foreach($relay in $relays)
-  $relay.name
-#end
-
-

@@ -24,6 +24,11 @@ public class Relay
         m_goal = new Stats(dollarsRaisedGoal, participantsGoal, teamsGoal);
     }
 
+    public Relay(Stats goal)
+    {
+        m_goal = goal;
+    }
+
     public String getName()
     {
         return m_name;

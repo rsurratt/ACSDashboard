@@ -5,8 +5,8 @@
 <html>
 <head>
   <title>ACS Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="scaffold.css"/>
-  <link rel="stylesheet" type="text/css" href="dashboard.css"/>
+  <link rel="stylesheet" type="text/css" href="/scaffold.css"/>
+  <link rel="stylesheet" type="text/css" href="/dashboard.css"/>
 </head>
 <body>
   <table class="heading">

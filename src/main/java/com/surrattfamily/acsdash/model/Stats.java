@@ -24,6 +24,11 @@ public class Stats
         return m_dollarsRaised;
     }
 
+    public String getDollarsRaisedFormatted()
+    {
+        return String.format("$%,d", m_dollarsRaised);
+    }
+
     public int getParticipants()
     {
         return m_participants;

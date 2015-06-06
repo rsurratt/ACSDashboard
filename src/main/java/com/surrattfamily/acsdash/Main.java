@@ -1,12 +1,9 @@
 package com.surrattfamily.acsdash;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.io.Resources;
 import com.surrattfamily.acsdash.action.ActionContext;
 import com.surrattfamily.acsdash.action.DashboardAction;
 import com.surrattfamily.acsdash.action.IndexAction;
-import com.surrattfamily.acsdash.action.ListAction;
 import com.surrattfamily.acsdash.action.RelaysAction;
 import com.surrattfamily.acsdash.action.StaffPartnersAction;
 import com.surrattfamily.acsdash.action.StaticFileAction;
@@ -48,7 +45,7 @@ public class Main extends HttpServlet
         builder.put(Pattern.compile("/managers"), new StaffPartnersAction());
         builder.put(Pattern.compile("/relays(.*)"), new RelaysAction());
         builder.put(Pattern.compile("/dashboard"), new DashboardAction());
-        builder.put(Pattern.compile("/list.*"), new ListAction());
+        builder.put(Pattern.compile("/dashboard/(.+)"), new DashboardAction());
         builder.put(Pattern.compile("/"), new IndexAction());
         builder.put(Pattern.compile("/.*"), new StaticFileAction());
 

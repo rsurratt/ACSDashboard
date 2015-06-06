@@ -1,3 +1,11 @@
-Hello again.
-We have to stop meeting like this :-)
+## @vtlvariable name="items" type="java.util.List<java.lang.String>"
 
+<div><a href="/dashboard">Overview Dashboard</a></div>
+<div><a href="/relays">Relay Goals</a></div>
+<div><a href="/managers">All Community Managers</a></div>
+<br/>
+<ul>
+#foreach($staffPartner in $staffPartners)
+  <li><a href="/dashboard/$staffPartner">$staffPartner's Dashboard</a></li>
+#end
+</ul>
