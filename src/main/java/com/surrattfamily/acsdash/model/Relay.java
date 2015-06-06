@@ -9,19 +9,19 @@ public class Relay
     private String m_name;
     private String m_staffPartner;
     private String m_homePage;
-    private Goal m_goal;
+    private Stats  m_goal;
 
     public Relay(String name,
-                 String staffPartner,
-                 String homePage,
-                 int dollarsRaisedGoal,
-                 int participantsGoal,
-                 int teamsGoal)
+                    String staffPartner,
+                    String homePage,
+                    int dollarsRaisedGoal,
+                    int participantsGoal,
+                    int teamsGoal)
     {
         m_name = name;
         m_staffPartner = staffPartner;
         m_homePage = homePage;
-        m_goal = new Goal(dollarsRaisedGoal, participantsGoal, teamsGoal);
+        m_goal = new Stats(dollarsRaisedGoal, participantsGoal, teamsGoal);
     }
 
     public String getName()
@@ -39,7 +39,7 @@ public class Relay
         return m_homePage;
     }
 
-    public Goal getGoal()
+    public Stats getGoal()
     {
         return m_goal;
     }

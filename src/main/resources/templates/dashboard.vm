@@ -1,0 +1,30 @@
+## @vtlvariable name="items" type="java.util.List<com.surrattfamily.acsdash.model.DashboardItem>"
+
+#parse("templates/macros.vm")
+
+<table class="acsTable">
+  <thead>
+    <tr>
+      <th class="text">Date</th>
+      <th class="text">Manager</th>
+      <th class="text">Relay</th>
+      <th class="number">Dollars Raised</th>
+      <th class="number">Teams</th>
+      <th class="number">Participants</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  #foreach($item in $items)
+    <tr>
+      <td class="text">$item.date</td>
+      <td class="text"><a href="$item.relay.homePage">$item.relay.name</a></td>
+      <td class="text">$item.relay.staffPartner</td>
+      <td class="number">#bargraph( $item.actual.dollarsRaised $item.dollarsRaisedPercentage )</td>
+      <td class="number">#bargraph( $item.actual.teams $item.teamsPercentage )</td>
+      <td class="number">#bargraph( $item.actual.participants $item.participantsPercentage )</td>
+    </tr>
+  #end
+  </tbody>
+</table>
+

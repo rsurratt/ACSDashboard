@@ -1,0 +1,14 @@
+#macro( bargraph $value $percent )
+${value}
+<table class="bargraph">
+  <tr>
+    <td>${percent}%</td>
+    <td>
+      <div class="line">
+        <div class="fill" style="width:${percent}px}"></div>
+      </div>
+    </td>
+  </tr>
+</table>
+#end
+

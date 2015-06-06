@@ -1,5 +1,5 @@
 ## @vtlvariable name="staffPartners" type="java.util.List<java.lang.String>"
-## @vtlvariable name="goals" type="java.util.Map<java.lang.String,com.surrattfamily.acsdash.model.Goal>"
+## @vtlvariable name="goals" type="java.util.Map<java.lang.String,com.surrattfamily.acsdash.model.Stats>"
 
 <table class="acsTable">
   <thead>
@@ -16,9 +16,9 @@
     #set($goal=$goals[$staffPartner])
     <tr>
       <td class="text">$staffPartner</td>
-      <td class="number">$goal.dollarsRaisedGoal</td>
-      <td class="number">$goal.teamsGoal</td>
-      <td class="number">$goal.participantsGoal</td>
+      <td class="number">$goal.dollarsRaised</td>
+      <td class="number">$goal.teams</td>
+      <td class="number">$goal.participants</td>
     </tr>
   #end
   </tbody>

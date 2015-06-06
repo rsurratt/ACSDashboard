@@ -30,6 +30,11 @@ public class Relays implements Iterable<Relay>
         return m_relays.stream();
     }
 
+    public Stream<Relay> parallelStream()
+    {
+        return m_relays.parallelStream();
+    }
+
     @Override
     public Iterator<Relay> iterator()
     {

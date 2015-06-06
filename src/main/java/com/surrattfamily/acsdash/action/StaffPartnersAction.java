@@ -1,6 +1,6 @@
 package com.surrattfamily.acsdash.action;
 
-import com.surrattfamily.acsdash.model.Goal;
+import com.surrattfamily.acsdash.model.Stats;
 import com.surrattfamily.acsdash.model.Relay;
 import com.surrattfamily.acsdash.renderer.Renderer;
 import com.surrattfamily.acsdash.renderer.VelocityRenderer;
@@ -32,11 +32,11 @@ public class StaffPartnersAction implements Function<ActionContext, Renderer>
                          .sorted()
                          .collect(toList());
 
-        Map<String,Goal> goals =
+        Map<String,Stats> goals =
             actionContext.getRelays().stream()
                 .collect(groupingBy(Relay::getStaffPartner,
                                     mapping(Relay::getGoal,
-                                            reducing(Goal.ZERO, Goal::sum))));
+                                            reducing(Stats.ZERO, Stats::sum))));
 
         renderer.put("staffPartners", staffPartners);
         renderer.put("goals", goals);

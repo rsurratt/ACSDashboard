@@ -16,9 +16,9 @@
     <tr>
       <td class="text">$relay.name</td>
       <td class="text">$relay.staffPartner</td>
-      <td class="number">$relay.goal.dollarsRaisedGoal</td>
-      <td class="number">$relay.goal.teamsGoal</td>
-      <td class="number">$relay.goal.participantsGoal</td>
+      <td class="number">$relay.goal.dollarsRaised</td>
+      <td class="number">$relay.goal.teams</td>
+      <td class="number">$relay.goal.participants</td>
     </tr>
   #end
   </tbody>

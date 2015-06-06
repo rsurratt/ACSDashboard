@@ -3,6 +3,6 @@
 <pre>
 Relay,Manager,Money,Teams,Participants,HomePage
 #foreach($relay in $relays)
-$relay.name,$relay.staffPartner,$relay.goal.dollarsRaisedGoal,$relay.goal.teamsGoal,$relay.goal.participantsGoal,$relay.homePage
+$relay.name,$relay.staffPartner,$relay.goal.dollarsRaised,$relay.goal.teams,$relay.goal.participants,$relay.homePage
 #end
 </pre>
