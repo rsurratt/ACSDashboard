@@ -8,6 +8,7 @@
   <thead>
     <tr>
       <th class="text">Date</th>
+      <th class="number">Days</th>
 #if($isOverview)
       <th class="text">Manager</th>
 #end
@@ -22,6 +23,11 @@
   #foreach($item in $items)
     <tr>
       <td class="text">$item.date</td>
+      <td class="number">
+#if($item.daysUntil > 0)
+        $item.daysUntil
+#end
+      </td>
 #if($isOverview)
       <td class="text"><a href="/dashboard/$item.relay.staffPartner">$item.relay.staffPartner</a></td>
 #end
@@ -35,6 +41,7 @@
   <tfoot>
     <tr>
       <th class="text"></th>
+      <th class="number"></th>
 #if($isOverview)
       <th class="text"></th>
 #end

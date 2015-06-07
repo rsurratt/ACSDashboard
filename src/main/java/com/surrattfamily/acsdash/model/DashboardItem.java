@@ -1,13 +1,19 @@
 package com.surrattfamily.acsdash.model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 /**
  * @author rsurratt
  * @since 6/6/15
  */
 public class DashboardItem
 {
-    private Relay m_relay;
-    private Stats m_actual;
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    private Relay  m_relay;
+    private Stats  m_actual;
     private String m_date;
 
     public DashboardItem(Relay relay, Stats actual, String date)
@@ -30,6 +36,12 @@ public class DashboardItem
     public String getDate()
     {
         return m_date;
+    }
+
+    public long getDaysUntil()
+    {
+        LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
+        return ChronoUnit.DAYS.between(LocalDate.now(), eventDate);
     }
 
     public int getDollarsRaisedPercentage()

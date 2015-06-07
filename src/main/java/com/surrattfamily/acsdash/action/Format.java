@@ -7,5 +7,6 @@ package com.surrattfamily.acsdash.action;
 public enum Format
 {
     HTML,
-    CSV
+    CSV,
+    DELTA_CSV
 }

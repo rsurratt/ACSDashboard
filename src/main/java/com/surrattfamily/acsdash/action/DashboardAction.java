@@ -8,6 +8,9 @@ import com.surrattfamily.acsdash.renderer.CSVRenderer;
 import com.surrattfamily.acsdash.renderer.Renderer;
 import com.surrattfamily.acsdash.renderer.VelocityRenderer;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -59,32 +62,52 @@ public class DashboardAction implements Function<ActionContext, Renderer>
                                  .map(DashboardItem::getActual)
                                  .reduce(Stats.ZERO, Stats::sum);
 
-        if (m_format == Format.CSV)
+        switch (m_format)
         {
-            CSVRenderer<DashboardItem> renderer = new CSVRenderer<>(items);
-            renderer.addColumn("Date", DashboardItem::getDate);
-            if (isOverview)
+            case HTML:
             {
-                renderer.addColumn("Manager", item -> item.getRelay().getStaffPartner());
+                VelocityRenderer renderer = new VelocityRenderer(template, pageTitle);
+                renderer.put("items", items);
+                renderer.put("total", new DashboardItem(new Relay(totalGoal), totalActual, null));
+                renderer.put("isOverview", isOverview);
+                if (isOverview)
+                {
+                    renderer.put("downloadLink", "/dashboard.csv");
+                }
+                return renderer;
             }
-            renderer.addColumn("Relay", item -> item.getRelay().getName());
-            renderer.addColumn("Dollars", item -> Integer.toString(item.getActual().getDollarsRaised()));
-            renderer.addColumn("Dollars%", item -> item.getDollarsRaisedPercentage() + "%");
-            renderer.addColumn("Teams", item -> Integer.toString(item.getActual().getTeams()));
-            renderer.addColumn("Teams%", item -> item.getTeamsPercentage() + "%");
-            renderer.addColumn("Participants", item -> Integer.toString(item.getActual().getParticipants()));
-            renderer.addColumn("Participants%", item -> item.getParticipantsPercentage() + "%");
-            return renderer;
-        }
 
-        VelocityRenderer renderer = new VelocityRenderer(template, pageTitle);
-        renderer.put("items", items);
-        renderer.put("total", new DashboardItem(new Relay(totalGoal), totalActual, null));
-        renderer.put("isOverview", isOverview);
-        if (isOverview)
-        {
-            renderer.put("downloadLink", "/dashboard.csv");
+            case CSV:
+            {
+                CSVRenderer<DashboardItem> renderer = new CSVRenderer<>(items);
+                renderer.addColumn("Date", DashboardItem::getDate);
+                if (isOverview)
+                {
+                    renderer.addColumn("Manager", item -> item.getRelay().getStaffPartner());
+                }
+                renderer.addColumn("Relay", item -> item.getRelay().getName());
+                renderer.addColumn("Dollars", item -> Integer.toString(item.getActual().getDollarsRaised()));
+                renderer.addColumn("Dollars%", item -> item.getDollarsRaisedPercentage() + "%");
+                renderer.addColumn("Teams", item -> Integer.toString(item.getActual().getTeams()));
+                renderer.addColumn("Teams%", item -> item.getTeamsPercentage() + "%");
+                renderer.addColumn("Participants", item -> Integer.toString(item.getActual().getParticipants()));
+                renderer.addColumn("Participants%", item -> item.getParticipantsPercentage() + "%");
+                return renderer;
+            }
+
+            case DELTA_CSV:
+            {
+                LocalDate now = LocalDate.now();
+
+                CSVRenderer<DashboardItem> renderer = new CSVRenderer<>(items);
+                renderer.addColumn("Relay", item -> item.getRelay().getName());
+                renderer.addColumn("DeltaDate", item -> Long.toString(item.getDaysUntil()));
+                renderer.addColumn("Dollars", item -> Integer.toString(item.getActual().getDollarsRaised()));
+                renderer.addColumn("Teams", item -> Integer.toString(item.getActual().getTeams()));
+                renderer.addColumn("Participants", item -> Integer.toString(item.getActual().getParticipants()));
+                return renderer;
+            }
         }
-        return renderer;
+        return null;  // can't get here
     }
 }

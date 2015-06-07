@@ -48,6 +48,7 @@ public class Main extends HttpServlet
         builder.put(Pattern.compile("/relays.csv"), new RelaysAction(Format.CSV));
         builder.put(Pattern.compile("/dashboard"), new DashboardAction(Format.HTML));
         builder.put(Pattern.compile("/dashboard.csv"), new DashboardAction(Format.CSV));
+        builder.put(Pattern.compile("/dashboard_delta.csv"), new DashboardAction(Format.DELTA_CSV));
         builder.put(Pattern.compile("/dashboard/(.+)"), new DashboardAction(Format.HTML));
         builder.put(Pattern.compile("/"), new IndexAction());
         builder.put(Pattern.compile("/.*"), new StaticFileAction());
