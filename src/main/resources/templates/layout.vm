@@ -1,5 +1,6 @@
 ## @vtlvariable name="pageTitle" type="java.lang.String"
 ## @vtlvariable name="bodyTemplate" type="java.lang.String"
+## @vtlvariable name="downloadLink" type="java.lang.String"
 
 <!DOCTYPE html>
 <html>
@@ -18,5 +19,10 @@
 
   #parse($bodyTemplate)
 
+  <br/>
+  <a href="/">Index</a>
+#if($downloadLink)
+  | <a href="$downloadLink">Download as CSV</a>
+#end
 </body>
 </html>

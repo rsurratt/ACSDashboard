@@ -48,6 +48,7 @@ public class RelaysAction implements Function<ActionContext, Renderer>
 
         VelocityRenderer renderer = new VelocityRenderer("relays", "All relays");
         renderer.put("relays", relays);
+        renderer.put("downloadLink", "/relays.csv");
         return renderer;
     }
 }

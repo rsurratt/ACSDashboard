@@ -81,6 +81,10 @@ public class DashboardAction implements Function<ActionContext, Renderer>
         renderer.put("items", items);
         renderer.put("total", new DashboardItem(new Relay(totalGoal), totalActual, null));
         renderer.put("isOverview", isOverview);
+        if (isOverview)
+        {
+            renderer.put("downloadLink", "/dashboard.csv");
+        }
         return renderer;
     }
 }
