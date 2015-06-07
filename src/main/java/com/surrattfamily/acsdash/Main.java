@@ -3,6 +3,7 @@ package com.surrattfamily.acsdash;
 import com.google.common.collect.ImmutableMap;
 import com.surrattfamily.acsdash.action.ActionContext;
 import com.surrattfamily.acsdash.action.DashboardAction;
+import com.surrattfamily.acsdash.action.Format;
 import com.surrattfamily.acsdash.action.IndexAction;
 import com.surrattfamily.acsdash.action.RelaysAction;
 import com.surrattfamily.acsdash.action.StaffPartnersAction;
@@ -43,9 +44,11 @@ public class Main extends HttpServlet
         ImmutableMap.Builder<Pattern, Function<ActionContext, Renderer>> builder = ImmutableMap.builder();
 
         builder.put(Pattern.compile("/managers"), new StaffPartnersAction());
-        builder.put(Pattern.compile("/relays(.*)"), new RelaysAction());
-        builder.put(Pattern.compile("/dashboard"), new DashboardAction());
-        builder.put(Pattern.compile("/dashboard/(.+)"), new DashboardAction());
+        builder.put(Pattern.compile("/relays"), new RelaysAction(Format.HTML));
+        builder.put(Pattern.compile("/relays.csv"), new RelaysAction(Format.CSV));
+        builder.put(Pattern.compile("/dashboard"), new DashboardAction(Format.HTML));
+        builder.put(Pattern.compile("/dashboard.csv"), new DashboardAction(Format.CSV));
+        builder.put(Pattern.compile("/dashboard/(.+)"), new DashboardAction(Format.HTML));
         builder.put(Pattern.compile("/"), new IndexAction());
         builder.put(Pattern.compile("/.*"), new StaticFileAction());
 

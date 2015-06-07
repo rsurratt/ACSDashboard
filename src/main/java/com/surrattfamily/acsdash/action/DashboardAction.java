@@ -4,6 +4,7 @@ import com.surrattfamily.acsdash.PageFetcher;
 import com.surrattfamily.acsdash.model.DashboardItem;
 import com.surrattfamily.acsdash.model.Relay;
 import com.surrattfamily.acsdash.model.Stats;
+import com.surrattfamily.acsdash.renderer.CSVRenderer;
 import com.surrattfamily.acsdash.renderer.Renderer;
 import com.surrattfamily.acsdash.renderer.VelocityRenderer;
 
@@ -20,6 +21,13 @@ import static java.util.stream.Collectors.toList;
  */
 public class DashboardAction implements Function<ActionContext, Renderer>
 {
+    private Format m_format;
+
+    public DashboardAction(Format format)
+    {
+        m_format = format;
+    }
+
     @Override
     public Renderer apply(ActionContext actionContext)
     {
@@ -36,8 +44,6 @@ public class DashboardAction implements Function<ActionContext, Renderer>
         }
 
         String template = "dashboard";
-        VelocityRenderer renderer = new VelocityRenderer(template, pageTitle);
-
         List<DashboardItem> items =
             actionContext.getRelays().parallelStream()
                          .filter(predicate)
@@ -53,6 +59,25 @@ public class DashboardAction implements Function<ActionContext, Renderer>
                                  .map(DashboardItem::getActual)
                                  .reduce(Stats.ZERO, Stats::sum);
 
+        if (m_format == Format.CSV)
+        {
+            CSVRenderer<DashboardItem> renderer = new CSVRenderer<>(items);
+            renderer.addColumn("Date", DashboardItem::getDate);
+            if (isOverview)
+            {
+                renderer.addColumn("Manager", item -> item.getRelay().getStaffPartner());
+            }
+            renderer.addColumn("Relay", item -> item.getRelay().getName());
+            renderer.addColumn("Dollars", item -> Integer.toString(item.getActual().getDollarsRaised()));
+            renderer.addColumn("Dollars%", item -> item.getDollarsRaisedPercentage() + "%");
+            renderer.addColumn("Teams", item -> Integer.toString(item.getActual().getTeams()));
+            renderer.addColumn("Teams%", item -> item.getTeamsPercentage() + "%");
+            renderer.addColumn("Participants", item -> Integer.toString(item.getActual().getParticipants()));
+            renderer.addColumn("Participants%", item -> item.getParticipantsPercentage() + "%");
+            return renderer;
+        }
+
+        VelocityRenderer renderer = new VelocityRenderer(template, pageTitle);
         renderer.put("items", items);
         renderer.put("total", new DashboardItem(new Relay(totalGoal), totalActual, null));
         renderer.put("isOverview", isOverview);
