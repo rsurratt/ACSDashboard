@@ -1,6 +1,7 @@
 package com.surrattfamily.acsdash.model;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
@@ -41,7 +42,7 @@ public class DashboardItem
     public long getDaysUntil()
     {
         LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
-        return ChronoUnit.DAYS.between(LocalDate.now(), eventDate);
+        return ChronoUnit.DAYS.between(LocalDate.now(ZoneId.of("America/New_York")), eventDate);
     }
 
     public int getDollarsRaisedPercentage()

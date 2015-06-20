@@ -24,7 +24,7 @@
     <tr>
       <td class="text">$item.date</td>
       <td class="number">
-#if($item.daysUntil > 0)
+#if($item.daysUntil >= 0)
         $item.daysUntil
 #end
       </td>
