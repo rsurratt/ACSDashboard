@@ -11,7 +11,7 @@ import java.time.temporal.ChronoUnit;
  */
 public class DashboardItem
 {
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private Relay  m_relay;
     private Stats  m_actual;
@@ -43,6 +43,12 @@ public class DashboardItem
     {
         LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
         return ChronoUnit.DAYS.between(LocalDate.now(ZoneId.of("America/New_York")), eventDate);
+    }
+
+    public String getYearAsString()
+    {
+        LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
+        return Integer.toString(eventDate.getYear());
     }
 
     public int getDollarsRaisedPercentage()

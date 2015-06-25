@@ -6,18 +6,21 @@ package com.surrattfamily.acsdash.model;
  */
 public class Relay
 {
+    private String m_code;
     private String m_name;
     private String m_staffPartner;
     private String m_homePage;
     private Stats  m_goal;
 
-    public Relay(String name,
-                    String staffPartner,
-                    String homePage,
-                    int dollarsRaisedGoal,
-                    int participantsGoal,
-                    int teamsGoal)
+    public Relay(String code,
+                 String name,
+                 String staffPartner,
+                 String homePage,
+                 int dollarsRaisedGoal,
+                 int participantsGoal,
+                 int teamsGoal)
     {
+        m_code = code;
         m_name = name;
         m_staffPartner = staffPartner;
         m_homePage = homePage;
@@ -27,6 +30,11 @@ public class Relay
     public Relay(Stats goal)
     {
         m_goal = goal;
+    }
+
+    public String getCode()
+    {
+        return m_code;
     }
 
     public String getName()

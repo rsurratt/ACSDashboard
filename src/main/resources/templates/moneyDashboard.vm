@@ -1,0 +1,38 @@
+## @vtlvariable name="items" type="java.util.List<com.surrattfamily.acsdash.model.DashboardItem>"
+## @vtlvariable name="total" type="com.surrattfamily.acsdash.model.DashboardItem"
+## @vtlvariable name="isOverview" type="boolean"
+
+#parse("templates/macros.vm")
+
+<table class="acsTable">
+  <thead>
+    <tr>
+      <th class="text">Date</th>
+      <th class="number">Days</th>
+#if($isOverview)
+      <th class="text">Manager</th>
+#end
+      <th class="text">Relay</th>
+      <th class="text">Dollars Raised</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  #foreach($item in $items)
+    <tr>
+      <td class="text">$item.date</td>
+      <td class="number">
+#if($item.daysUntil >= 0)
+        $item.daysUntil
+#end
+      </td>
+#if($isOverview)
+      <td class="text"><a href="/money/$item.relay.staffPartner">$item.relay.staffPartner</a></td>
+#end
+      <td class="text"><a href="$item.relay.homePage">$item.relay.name</a></td>
+      <td class="text">#moneygraph( $item.actual.dollarsRaisedFormatted $item.dollarsRaisedPercentage $item.actual.dollarsRaised $item.relay.goal.dollarsRaised )</td>
+    </tr>
+  #end
+  </tbody>
+</table>
+

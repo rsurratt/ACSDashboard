@@ -9,8 +9,6 @@ import com.surrattfamily.acsdash.renderer.Renderer;
 import com.surrattfamily.acsdash.renderer.VelocityRenderer;
 
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -31,11 +29,21 @@ public class DashboardAction implements Function<ActionContext, Renderer>
         m_format = format;
     }
 
+    protected String getTemplate()
+    {
+        return "dashboard";
+    }
+
+    protected String getPageTitle()
+    {
+        return "Overview Dashboard";
+    }
+
     @Override
     public Renderer apply(ActionContext actionContext)
     {
         Predicate<Relay> predicate = r -> true;
-        String pageTitle = "Overview Dashboard";
+        String pageTitle = getPageTitle();
         boolean isOverview = true;
 
         if (!actionContext.getParams().isEmpty())
@@ -46,7 +54,6 @@ public class DashboardAction implements Function<ActionContext, Renderer>
             isOverview = false;
         }
 
-        String template = "dashboard";
         List<DashboardItem> items =
             actionContext.getRelays().parallelStream()
                          .filter(predicate)
@@ -66,7 +73,7 @@ public class DashboardAction implements Function<ActionContext, Renderer>
         {
             case HTML:
             {
-                VelocityRenderer renderer = new VelocityRenderer(template, pageTitle);
+                VelocityRenderer renderer = new VelocityRenderer(getTemplate(), pageTitle);
                 renderer.put("items", items);
                 renderer.put("total", new DashboardItem(new Relay(totalGoal), totalActual, null));
                 renderer.put("isOverview", isOverview);
@@ -98,10 +105,13 @@ public class DashboardAction implements Function<ActionContext, Renderer>
             case DELTA_CSV:
             {
                 LocalDate now = LocalDate.now();
+                String nowString = DashboardItem.DATE_FORMAT.format(now);
 
                 CSVRenderer<DashboardItem> renderer = new CSVRenderer<>(items);
-                renderer.addColumn("Relay", item -> item.getRelay().getName());
-                renderer.addColumn("DeltaDate", item -> Long.toString(item.getDaysUntil()));
+                renderer.addColumn("Date", item -> nowString);
+                renderer.addColumn("Year", DashboardItem::getYearAsString);
+                renderer.addColumn("Relay", item -> item.getRelay().getCode());
+                renderer.addColumn("DeltaDate", item -> Long.toString(-item.getDaysUntil()));
                 renderer.addColumn("Dollars", item -> Integer.toString(item.getActual().getDollarsRaised()));
                 renderer.addColumn("Teams", item -> Integer.toString(item.getActual().getTeams()));
                 renderer.addColumn("Participants", item -> Integer.toString(item.getActual().getParticipants()));

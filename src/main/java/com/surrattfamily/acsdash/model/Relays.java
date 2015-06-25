@@ -49,12 +49,13 @@ public class Relays implements Iterable<Relay>
         List<Relay> relays = lines.stream()
             .skip(1)
             .map(line -> line.split(","))
-            .map(parts -> new Relay(parts[0],  // name
-                                    parts[1],  // staffPartner
-                                    parts[5],  // homePage
-                                    Integer.parseInt(parts[2]), // dollars
-                                    Integer.parseInt(parts[4]), // participants
-                                    Integer.parseInt(parts[3]))) // teams
+            .map(parts -> new Relay(parts[0],  // code
+                                    parts[1],  // name
+                                    parts[2],  // staffPartner
+                                    parts[6],  // homePage
+                                    Integer.parseInt(parts[3]), // dollars
+                                    Integer.parseInt(parts[5]), // participants
+                                    Integer.parseInt(parts[4]))) // teams
             .collect(toList());
 
         return new Relays(relays);

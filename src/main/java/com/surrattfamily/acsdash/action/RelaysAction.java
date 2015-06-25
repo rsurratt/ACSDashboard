@@ -37,6 +37,7 @@ public class RelaysAction implements Function<ActionContext, Renderer>
         if (m_format == Format.CSV)
         {
             CSVRenderer<Relay> renderer = new CSVRenderer<>(relays);
+            renderer.addColumn("Code", Relay::getCode);
             renderer.addColumn("Name", Relay::getName);
             renderer.addColumn("Manager", Relay::getStaffPartner);
             renderer.addColumn("Dollar Goal", relay -> Integer.toString(relay.getGoal().getDollarsRaised()));

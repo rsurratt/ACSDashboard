@@ -12,3 +12,20 @@ ${value}
 </table>
 #end
 
+#macro( moneygraph $value $percent $actual $goal )
+#set( $scaledActual = $actual / 500 )
+#set( $scaledGoal = $goal / 500 )
+${value}
+<table class="moneygraph">
+  <tr>
+    <td>
+      <div class="percent">${percent}%</div>
+    <td>
+      <div class="line" style="width:${scaledGoal}px;">
+        <div class="fill" style="width:${scaledActual}px;"></div>
+      </div>
+    </td>
+  </tr>
+</table>
+#end
+

@@ -5,6 +5,7 @@ import com.surrattfamily.acsdash.action.ActionContext;
 import com.surrattfamily.acsdash.action.DashboardAction;
 import com.surrattfamily.acsdash.action.Format;
 import com.surrattfamily.acsdash.action.IndexAction;
+import com.surrattfamily.acsdash.action.MoneyDashboardAction;
 import com.surrattfamily.acsdash.action.RelaysAction;
 import com.surrattfamily.acsdash.action.StaffPartnersAction;
 import com.surrattfamily.acsdash.action.StaticFileAction;
@@ -50,6 +51,8 @@ public class Main extends HttpServlet
         builder.put(Pattern.compile("/dashboard.csv"), new DashboardAction(Format.CSV));
         builder.put(Pattern.compile("/dashboard_delta.csv"), new DashboardAction(Format.DELTA_CSV));
         builder.put(Pattern.compile("/dashboard/(.+)"), new DashboardAction(Format.HTML));
+        builder.put(Pattern.compile("/money"), new MoneyDashboardAction(Format.HTML));
+        builder.put(Pattern.compile("/money/(.+)"), new MoneyDashboardAction(Format.HTML));
         builder.put(Pattern.compile("/"), new IndexAction());
         builder.put(Pattern.compile("/.*"), new StaticFileAction());
 

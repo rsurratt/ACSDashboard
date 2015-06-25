@@ -38,15 +38,24 @@ table.bargraph {
     border: none;
 }
 
-.bargraph tr {
+table.moneygraph {
+  margin: 0 auto 0 0;
+  border: none;
+}
+
+.bargraph tr, .moneygraph tr {
     border: none;
 }
 
-.bargraph td {
+.bargraph td, .moneygraph td {
     font-size: 0.7em;
     vertical-align: middle;
     padding: 0 0 2px 2px;
     border: none;
+}
+
+.moneygraph .percent {
+    width: 30px;
 }
 
 .line {

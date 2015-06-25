@@ -18,8 +18,6 @@ public class ActionContext
     private final ImmutableList<String> m_params;
     private final Relays                m_relays;
 
-    private Renderer m_renderer;
-
     public ActionContext(Matcher matcher, Relays relays)
     {
         m_relays = relays;
@@ -46,15 +44,5 @@ public class ActionContext
     public ImmutableList<String> getParams()
     {
         return m_params;
-    }
-
-    public void renderPage(HttpServletResponse response) throws IOException
-    {
-        m_renderer.render(response);
-    }
-
-    public void setRenderer(Renderer renderer)
-    {
-        m_renderer = renderer;
     }
 }
