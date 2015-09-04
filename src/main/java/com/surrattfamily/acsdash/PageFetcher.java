@@ -24,8 +24,9 @@ import java.util.regex.Pattern;
  */
 public class PageFetcher
 {
-    private static int CONNECT_TIMEOUT = (int)TimeUnit.SECONDS.toMillis(1);
-    private static int READ_TIMEOUT = (int)TimeUnit.SECONDS.toMillis(15);
+    public static final String UNKNOWN_DATE = "???";
+    private static final int CONNECT_TIMEOUT = (int)TimeUnit.SECONDS.toMillis(1);
+    private static final int READ_TIMEOUT = (int)TimeUnit.SECONDS.toMillis(15);
 
     private static String fetchPage(String homePage) throws IOException
     {
@@ -62,7 +63,7 @@ public class PageFetcher
         }
 
         Stats actual = Stats.ZERO;
-        String date = "Not Found";
+        String date = UNKNOWN_DATE;
 
         if (page != null)
         {
@@ -139,7 +140,7 @@ public class PageFetcher
         }
 
         System.out.println("Couldn't parse: [" + s + "]");
-        return "Not Found";
+        return UNKNOWN_DATE;
     }
 
 

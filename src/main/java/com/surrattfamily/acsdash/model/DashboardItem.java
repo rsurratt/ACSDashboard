@@ -1,5 +1,7 @@
 package com.surrattfamily.acsdash.model;
 
+import com.surrattfamily.acsdash.PageFetcher;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -41,14 +43,28 @@ public class DashboardItem
 
     public long getDaysUntil()
     {
-        LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
-        return ChronoUnit.DAYS.between(LocalDate.now(ZoneId.of("America/New_York")), eventDate);
+        if (PageFetcher.UNKNOWN_DATE.equals(m_date))
+        {
+            return 0;
+        }
+        else
+        {
+            LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
+            return ChronoUnit.DAYS.between(LocalDate.now(ZoneId.of("America/New_York")), eventDate);
+        }
     }
 
     public String getYearAsString()
     {
-        LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
-        return Integer.toString(eventDate.getYear());
+        if (PageFetcher.UNKNOWN_DATE.equals(m_date))
+        {
+            return "??";
+        }
+        else
+        {
+            LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
+            return Integer.toString(eventDate.getYear());
+        }
     }
 
     public int getDollarsRaisedPercentage()
