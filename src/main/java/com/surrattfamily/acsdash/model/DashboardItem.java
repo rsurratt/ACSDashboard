@@ -43,15 +43,19 @@ public class DashboardItem
 
     public long getDaysUntil()
     {
-        if (PageFetcher.UNKNOWN_DATE.equals(m_date))
+        try
         {
-            return 0;
+            if (!PageFetcher.UNKNOWN_DATE.equals(m_date))
+            {
+                LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
+                return ChronoUnit.DAYS.between(LocalDate.now(ZoneId.of("America/New_York")), eventDate);
+            }
         }
-        else
+        catch (Exception e)
         {
-            LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
-            return ChronoUnit.DAYS.between(LocalDate.now(ZoneId.of("America/New_York")), eventDate);
+            // ignore
         }
+        return 0;
     }
 
     public String getYearAsString()
