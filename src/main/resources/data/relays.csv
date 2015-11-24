@@ -1,1 +1,19 @@
-Code,Name,Manager,Money,Teams,Participants,HomePageASH,Ashland,Britney,120000,50,730,http://relay.acsevents.org/site/TR?pg=entry&fr_id=65288BOL,Bolton,Abby,55000,25,410,http://main.acsevents.org/site/TR?pg=entry&fr_id=65418BRT,Braintree,Amanda,138000,57,500,http://relay.acsevents.org/site/TR?pg=entry&fr_id=65353CSC,Central South County,Lauren,85000,30,300,http://main.acsevents.org/site/TR/RelayForLife/RFLCY16NE?pg=entry&fr_id=69677CHS,Chapel Hill-Chauncy Hall School,Jennifer,10000,15,150,http://main.acsevents.org/site/TR?pg=entry&fr_id=65162EBS,East Boston,Jennifer,50000,34,500,http://main.acsevents.org/site/TR?pg=entry&fr_id=65407FOX,Foxboro,Mike,63650,40,362,http://main.acsevents.org/site/TR?pg=entry&fr_id=65378FRK,Franklin,Mike,98000,50,690,http://main.acsevents.org/site/TR?pg=entry&fr_id=65359MRB,Marlboro/Hudson,Abby,67000,60,480,http://main.acsevents.org/site/TR?pg=entry&fr_id=65296MLF,Milford,Mike,83000,40,362,http://main.acsevents.org/site/TR?pg=entry&fr_id=65384MLS,Millis/Medway/Medfield/Norfolk,Mike,70000,27,256,http://main.acsevents.org/site/TR?pg=entry&fr_id=65372NAT,Natick,Britney,140000,85,850,http://relay.acsevents.org/site/TR?pg=entry&fr_id=65284NDH,Needham,Jennifer,147000,55,575,http://main.acsevents.org/site/TR?pg=entry&fr_id=65387NRW,Norwood,Amanda,42000,39,400,http://relay.acsevents.org/site/TR?pg=entry&fr_id=75649QNC,Quincy,Amanda,100000,35,376,http://relay.acsevents.org/site/TR?pg=entry&fr_id=65368SHW,Shrewsbury,Abby,20000,25,280,http://main.acsevents.org/site/TR?pg=entry&fr_id=65415SBR,Southbridge,Lauren,205000,60,900,http://main.acsevents.org/site/TR?pg=entry&fr_id=75651TAN,Tantasqua,Lauren,26000,22,380,http://main.acsevents.org/site/TR?pg=entry&fr_id=64849WAT,Watertown,Jennifer,70000,37,335,http://main.acsevents.org/site/TR?pg=entry&fr_id=65404WBR,Westborough,Abby,14000,14,165,http://main.acsevents.org/site/TR?pg=entry&fr_id=64824WIN,Winchester,Jennifer,90000,35,275,http://main.acsevents.org/site/TR?pg=entry&fr_id=65338WOR,Worcester,Lauren,132000,60,550,http://main.acsevents.org/site/TR?pg=entry&fr_id=65412
+Code,Name,Manager,Money,Teams,Participants,HomePage
+ASH,Ashland,Renee,120000,50,730,http://relay.acsevents.org/site/TR?pg=entry&fr_id=65288
+BOL,Bolton,Abby,55000,25,410,http://main.acsevents.org/site/TR?pg=entry&fr_id=65418
+CSC,Central South County,Lauren,85000,30,300,http://main.acsevents.org/site/TR/RelayForLife/RFLCY16NE?pg=entry&fr_id=69677
+FOX,Foxboro,Mike,63650,40,362,http://main.acsevents.org/site/TR?pg=entry&fr_id=65378
+FRK,Franklin,Mike,98000,50,690,http://main.acsevents.org/site/TR?pg=entry&fr_id=65359
+MRB,Marlboro/Hudson,Abby,67000,60,480,http://main.acsevents.org/site/TR?pg=entry&fr_id=65296
+MLF,Milford,Renee,83000,40,362,http://main.acsevents.org/site/TR?pg=entry&fr_id=65384
+MLS,Millis/Medway/Medfield/Norfolk,Mike,70000,27,256,http://main.acsevents.org/site/TR?pg=entry&fr_id=65372
+NAT,Natick,Renee,140000,85,850,http://relay.acsevents.org/site/TR?pg=entry&fr_id=65284
+SHW,Shrewsbury,Abby,20000,25,280,http://main.acsevents.org/site/TR?pg=entry&fr_id=65415
+SBR,Southbridge,Lauren,205000,60,900,http://main.acsevents.org/site/TR?pg=entry&fr_id=75651
+TAN,Tantasqua,Lauren,26000,22,380,http://main.acsevents.org/site/TR?pg=entry&fr_id=64849
+WBR,Westborough,Abby,14000,14,165,http://main.acsevents.org/site/TR?pg=entry&fr_id=64824
+WOR,Worcester,Lauren,132000,60,550,http://main.acsevents.org/site/TR?pg=entry&fr_id=65412
+STO,Stoughton,Matt,20000,30,300,http://main.acsevents.org/site/TR?pg=entry&fr_id=76990
+AUB,Auburn Schools,Kathleen,40000,40,400,http://main.acsevents.org/site/TR/RelayForLife/RFLCY16NE?pg=entry&fr_id=71446
+FSU,Framingham State,Kathleen,20000,20,200,http://main.acsevents.org/site/TR?pg=entry&fr_id=73128
+BEV,Beverly Schools,Kathleen,20000,20,200,http://main.acsevents.org/site/TR/RelayForLife/RFLCY16NE?pg=entry&fr_id=76397
