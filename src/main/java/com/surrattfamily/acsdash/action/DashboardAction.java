@@ -75,7 +75,7 @@ public class DashboardAction implements Function<ActionContext, Renderer>
             {
                 VelocityRenderer renderer = new VelocityRenderer(getTemplate(), pageTitle);
                 renderer.put("items", items);
-                renderer.put("total", new DashboardItem(new Relay(totalGoal), totalActual, null));
+                renderer.put("total", new DashboardItem(new Relay(totalGoal), totalActual, null, null, null));
                 renderer.put("isOverview", isOverview);
                 if (isOverview)
                 {

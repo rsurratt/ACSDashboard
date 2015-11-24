@@ -18,12 +18,16 @@ public class DashboardItem
     private Relay  m_relay;
     private Stats  m_actual;
     private String m_date;
+    private String m_datePattern;
+    private String m_rawDate;
 
-    public DashboardItem(Relay relay, Stats actual, String date)
+    public DashboardItem(Relay relay, Stats actual, String date, String datePattern, String rawDate)
     {
         m_relay = relay;
         m_actual = actual;
         m_date = date;
+        m_datePattern = datePattern;
+        m_rawDate = rawDate;
     }
 
     public Relay getRelay()
@@ -39,6 +43,16 @@ public class DashboardItem
     public String getDate()
     {
         return m_date;
+    }
+
+    public String getDatePattern()
+    {
+        return m_datePattern;
+    }
+
+    public String getRawDate()
+    {
+        return m_rawDate;
     }
 
     public long getDaysUntil()

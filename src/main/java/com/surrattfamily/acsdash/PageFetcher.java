@@ -1,7 +1,7 @@
 package com.surrattfamily.acsdash;
 
 import com.google.common.base.Charsets;
-import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableList;
 import com.google.common.io.ByteStreams;
 import com.surrattfamily.acsdash.model.DashboardItem;
 import com.surrattfamily.acsdash.model.Relay;
@@ -12,9 +12,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormatSymbols;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,6 +62,8 @@ public class PageFetcher
 
         Stats actual = Stats.ZERO;
         String date = UNKNOWN_DATE;
+        String datePattern = "N/A";
+        String rawDate = "NO FOUND";
 
         if (page != null)
         {
@@ -80,17 +80,20 @@ public class PageFetcher
             matcher = DATE_PATTERN.matcher(page);
             if (matcher.find())
             {
-                date = parseDate(matcher.group(1));
+                rawDate = matcher.group(1);
+                String[] result = parseDate(rawDate);
+                date = result[0];
+                datePattern = result[1];
             }
         }
 
-        return new DashboardItem(relay, actual, date);
+        return new DashboardItem(relay, actual, date, datePattern, rawDate);
     }
 
 
-    private static String date(Matcher matcher, int yearGroup, int monthGroup, int dayGroup, String id)
+    private static String date(Matcher matcher, int yearGroup, int monthGroup, int dayGroup)
     {
-        String year = (yearGroup == 0) ? "2015" : matcher.group(yearGroup).trim();
+        String year = (yearGroup == 0) ? "2016" : matcher.group(yearGroup).trim();
         String month = matcher.group(monthGroup).trim();
         String day = matcher.group(dayGroup).trim();
 
@@ -113,50 +116,73 @@ public class PageFetcher
         return String.format("%s-%s-%s", year, month, day);
     }
 
-    private static ImmutableMap<Pattern, Function<Matcher, String>> DATE_PATTERNS
-        = ImmutableMap.<Pattern, Function<Matcher, String>>builder()
-                      .put(Pattern.compile("(\\w+) (\\d+)\\w*.*"), m -> date(m, 0, 1, 2, "a"))
-                      .put(Pattern.compile("(\\w+), (\\w+) (\\d+)-(\\d+), (\\d+)"), m -> date(m, 5, 2, 3, "j"))
-                      .put(Pattern.compile("(.*)-(.*),(.*)"), m -> date(m, 0, 1, 3, "b"))
-                      .put(Pattern.compile("(.*), (\\w*) (\\d*)\\w*,(.*)"), m -> date(m, 4, 2, 3, "c"))
-                      .put(Pattern.compile("(.*),(.*),(.*)"), m -> date(m, 0, 2, 3, "d"))
-                      .put(Pattern.compile("(.*),(.*) ([0-9:]+PM)"), m -> date(m, 0, 1, 2, "e"))
-                      .put(Pattern.compile("(.*), (201[34567])"), m -> date(m, 0, 1, 2, "f"))
-                      .put(Pattern.compile("(.*),([^, ]+)(201[34567])"), m -> date(m, 3, 1, 2, "g"))
-                      .put(Pattern.compile("(\\w*) (\\w*) (\\d*)\\w* (\\d*).*"), m -> date(m, 4, 2, 3, "h"))
-                      .put(Pattern.compile("(\\w*), (\\w*) (\\d*) (\\d*)"), m -> date(m, 4, 2, 3, "i"))
-                      .build();
+    private static ImmutableList<Pattern> STRIP_PATTERNS
+        = ImmutableList.of(Pattern.compile("Friday,? *"),
+                           Pattern.compile("Saturday,? *"),
+                           Pattern.compile("Sunday,? *"));
 
-
-    private static String parseDate(String s)
+    private enum DatePattern
     {
-        for (Map.Entry<Pattern, Function<Matcher, String>> entry : DATE_PATTERNS.entrySet())
+        MDY(Pattern.compile("(\\w+) (\\d+), (\\d+)")),
+        MD_DY(Pattern.compile("(\\w+) (\\d+)-\\d+, (\\d+)")),
+        MD_MDY(Pattern.compile("(\\w+) (\\d+)-\\w+ \\d+, (\\d+)")),
+        MDY_MDY(Pattern.compile("(\\w+) (\\d+), (\\d+) - \\w+ \\d+, \\d+"));
+
+        private Pattern m_pattern;
+        private int m_yearGroup  = 3;
+        private int m_monthGroup = 1;
+        private int m_dayGroup   = 2;
+
+        DatePattern(Pattern pattern)
         {
-            Matcher matcher = entry.getKey().matcher(s);
+            m_pattern = pattern;
+        }
+
+        public Matcher matcher(String s)
+        {
+            return m_pattern.matcher(s);
+        }
+
+        public String parseDate(Matcher matcher)
+        {
+            return date(matcher, m_yearGroup, m_monthGroup, m_dayGroup);
+        }
+    }
+
+    private static String[] parseDate(String s)
+    {
+        for (Pattern strip : STRIP_PATTERNS)
+        {
+            Matcher matcher = strip.matcher(s);
+            s = matcher.replaceAll("");
+        }
+
+        for (DatePattern pattern : DatePattern.values())
+        {
+            Matcher matcher = pattern.matcher(s);
             if (matcher.matches())
             {
-                return entry.getValue().apply(matcher);
+                return new String[] { pattern.parseDate(matcher), pattern.name() };
             }
         }
 
-        System.out.println("Couldn't parse: [" + s + "]");
-        return UNKNOWN_DATE;
+        return new String[] { UNKNOWN_DATE, "Couldn't parse: [" + s + "]" };
     }
 
 
     public static void main(String[] args)
     {
-        System.out.println(parseDate("March 28, 2014"));
-        System.out.println(parseDate("Friday, June 27 2014"));
-        System.out.println(parseDate("June 13- June 14, 2014"));
-        System.out.println(parseDate("Saturday, June 14, 2014"));
-        System.out.println(parseDate("Saturday, June 14,2014"));
-        System.out.println(parseDate("September 6,2013 5:30PM"));
-        System.out.println(parseDate("Saturday May 31st 2014 "));
-        System.out.println(parseDate("April 11th-April 12th 6pm-8am"));
-        System.out.println(parseDate("May 30th 10am to 11pm"));
-        System.out.println(parseDate("Saturday, May 16th, 2015"));
-        System.out.println(parseDate("Friday, June 12-13, 2015"));
-        System.out.println(parseDate("Friday, September 11-12, 2015"));
+        checkDate("Friday, May 6, 2016", "2016-05-06");
+        checkDate("Friday, September 11-12, 2015", "2015-09-11");
+        checkDate("June 11-12, 2016", "2016-06-11");
+        checkDate("Friday, April 08-Saturday, April 09, 2016", "2016-04-08");
+        checkDate("Saturday, May 21, 2016 - May 22, 2016", "2016-05-21");
+        checkDate("TBD", "???");
+    }
+
+    public static void checkDate(String input, String expected)
+    {
+        String[] actual = parseDate(input);
+        System.out.println(actual[0] + (actual[0].equals(expected) ? " GOOD" : " BAD from " + actual[1]));
     }
 }

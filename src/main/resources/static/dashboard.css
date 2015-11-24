@@ -7,6 +7,7 @@ h1 { color: #310875; }
 
 td.number, th.number { text-align:right; }
 td.text, th.text { text-align:left; }
+td.hidden_text, th.hidden_text { text-align:left; display:none; }
 
 table.acsTable {
     border-collapse: collapse;

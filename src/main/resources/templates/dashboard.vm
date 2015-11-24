@@ -16,6 +16,7 @@
       <th class="number">Dollars Raised</th>
       <th class="number">Teams</th>
       <th class="number">Participants</th>
+      <th class="hidden_text">Date Debugging</th>
     </tr>
   </thead>
 
@@ -35,6 +36,7 @@
       <td class="number">#bargraph( $item.actual.dollarsRaisedFormatted $item.dollarsRaisedPercentage )</td>
       <td class="number">#bargraph( $item.actual.teams $item.teamsPercentage )</td>
       <td class="number">#bargraph( $item.actual.participants $item.participantsPercentage )</td>
+      <td class="hidden_text">$item.datePattern<br/>$item.rawDate</td>
     </tr>
   #end
   </tbody>
@@ -49,6 +51,7 @@
       <th class="number">#bargraph( $total.actual.dollarsRaisedFormatted $total.dollarsRaisedPercentage )</th>
       <th class="number">#bargraph( $total.actual.teams $total.teamsPercentage )</th>
       <th class="number">#bargraph( $total.actual.participants $total.participantsPercentage )</th>
+      <th class="hidden_text">Date Debugging</th>
     </tr>
   </tfoot>
 </table>
