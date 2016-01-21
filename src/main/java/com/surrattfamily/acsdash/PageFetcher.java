@@ -117,7 +117,8 @@ public class PageFetcher
     }
 
     private static ImmutableList<Pattern> STRIP_PATTERNS
-        = ImmutableList.of(Pattern.compile("Friday,? *"),
+        = ImmutableList.of(Pattern.compile("Thursday,? *"),
+                           Pattern.compile("Friday,? *"),
                            Pattern.compile("Saturday,? *"),
                            Pattern.compile("Sunday,? *"));
 
