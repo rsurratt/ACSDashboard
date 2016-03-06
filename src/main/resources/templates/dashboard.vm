@@ -23,7 +23,7 @@
   <tbody>
   #foreach($item in $items)
     <tr>
-      <td class="text">$item.date</td>
+      <td class="text">$item.date $item.dayOfWeek</td>
       <td class="number">
 #if($item.daysUntil >= 0)
         $item.daysUntil

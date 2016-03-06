@@ -2,10 +2,13 @@ package com.surrattfamily.acsdash.model;
 
 import com.surrattfamily.acsdash.PageFetcher;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
+import java.util.Locale;
 
 /**
  * @author rsurratt
@@ -82,6 +85,20 @@ public class DashboardItem
         {
             LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
             return Integer.toString(eventDate.getYear());
+        }
+    }
+
+    public String getDayOfWeek()
+    {
+        if (PageFetcher.UNKNOWN_DATE.equals(m_date))
+        {
+            return "?";
+        }
+        else
+        {
+            LocalDate eventDate = LocalDate.parse(m_date, DATE_FORMAT);
+            DayOfWeek dayOfWeek = eventDate.getDayOfWeek();
+            return dayOfWeek.getDisplayName(TextStyle.NARROW, Locale.US);
         }
     }
 
